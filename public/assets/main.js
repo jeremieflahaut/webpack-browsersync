@@ -65,9 +65,14 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-console.log('Hello World')
+"use strict";
+
+
+var toto = 'toto';
+
+console.log(toto);
 
 /***/ })
 /******/ ]);

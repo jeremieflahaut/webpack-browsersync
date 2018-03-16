@@ -2,13 +2,21 @@ const path = require('path')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
  
 module.exports = {
-    entry: './src/js/index.js',
-    output: {
-      path: path.resolve('./public/assets'),
-      filename: 'main.js',
-      publicPath: '/dist/assets'
+  entry: './src/js/index.js',
+  output: {
+    path: path.resolve('./public/assets'),
+    filename: 'main.js',
+    publicPath: '/dist/assets'
   },
-  // ...
+  module: {
+    rules: [
+      { 
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader" 
+      }
+    ]
+  },  
   plugins: [
     new BrowserSyncPlugin({
       // browse to http://localhost:3000/ during development,

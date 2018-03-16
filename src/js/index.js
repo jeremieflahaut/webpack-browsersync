@@ -1,1 +1,3 @@
-console.log('Hello World')
+const toto = 'toto'
+
+console.log(toto)
