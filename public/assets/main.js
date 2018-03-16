@@ -68,11 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-var toto = 'toto';
-
-console.log(toto);
+eval("\n\nvar toto = 'toto';\n\nconsole.log(toto);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9zcmMvanMvaW5kZXguanM/OTlhOCJdLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCB0b3RvID0gJ3RvdG8nXG5cbmNvbnNvbGUubG9nKHRvdG8pXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gc3JjL2pzL2luZGV4LmpzIl0sIm1hcHBpbmdzIjoiOztBQUFBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///0\n");
 
 /***/ })
 /******/ ]);

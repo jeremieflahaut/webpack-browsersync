@@ -8,7 +8,7 @@ let config = {
   output: {
     path: path.resolve('./public/assets'),
     filename: 'main.js',
-    publicPath: '/dist/assets'
+    publicPath: '/public/assets'
   },
   module: {
     rules: [
