@@ -1,7 +1,9 @@
 const path = require('path')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const dev = process.env.NODE_ENV === 'dev'
 
-module.exports = {
+let config = {
   entry: './src/js/index.js',
   output: {
     path: path.resolve('./public/assets'),
@@ -33,3 +35,11 @@ module.exports = {
     })
   ]
 }
+
+if (!dev) {
+  config.plugins.push(new UglifyJSPlugin({
+    sourceMap: false
+  }))
+}
+
+module.exports = config
