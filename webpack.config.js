@@ -25,6 +25,7 @@ let config = {
       }
     ]
   },
+  devtool: dev ? 'cheap-module-eval-source-map' : false,
   plugins: [
     new BrowserSyncPlugin({
       // browse to http://localhost:3000/ during development,
