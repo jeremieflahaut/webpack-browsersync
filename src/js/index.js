@@ -1,3 +1,3 @@
-const toto = 'toto'
+import css from '../css/styles.scss'
 
-console.log(toto)
+console.log(css)
