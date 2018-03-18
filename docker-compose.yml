@@ -1,0 +1,48 @@
+version: '3'
+services:
+
+  ############################
+  # Setup the Apache container
+  ############################
+  web:
+    image: httpd
+    ports:
+      - "80:80"
+    volumes:
+      - ./public:/usr/local/apache2/htdocs
+      - ./docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./docker/apache/vhosts/:/usr/local/apache2/conf/vhosts
+    
+  #########################
+  # Setup the PHP container
+  #########################
+  php:
+    build: ./docker/php/
+    volumes:
+      - ./public:/usr/local/apache2/htdocs
+    links:
+      - db:db
+
+  ##############################
+  # Setup the DataBase container
+  ##############################
+
+  db:
+    image: mysql
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+
+  ##############################
+  # Setup the phpmyadmin container
+  ##############################
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+     - PMA_ARBITRARY=1
+    ports:
+      - 8081:80
+    links:
+      - db:db
+

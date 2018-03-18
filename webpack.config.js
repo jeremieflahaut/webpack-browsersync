@@ -71,7 +71,8 @@ let config = {
       host: 'localhost',
       port: 3000,
       files: ['./public/*.html', './public/*.php'],
-      proxy: 'http://localhost/'
+      proxy: 'http://localhost/',
+      notify: false
     }),
     new ExtractTextPlugin({
       filename: 'styles.css'
