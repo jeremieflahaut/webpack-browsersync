@@ -50,7 +50,8 @@ let config = {
       port: 3000,
       files: ['./public/*.html', './public/*.php'],
       proxy: 'http://localhost/',
-      notify: true
+      notify: true,
+      open: false
     })
   ]
 }
