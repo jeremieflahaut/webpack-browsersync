@@ -1,5 +1,3 @@
-
-
 const path = require('path')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
