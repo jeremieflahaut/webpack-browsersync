@@ -1,11 +1,12 @@
 version: '3'
-services:
 
+services:
   ############################
   # Setup the Apache container
   ############################
   web:
-    image: httpd
+    container_name: apache_2-4-38
+    image: httpd:2.4.38
     ports:
       - "80:80"
     volumes:
@@ -16,33 +17,39 @@ services:
   #########################
   # Setup the PHP container
   #########################
+
   php:
+    container_name: php_7-3-2
     build: ./docker/php/
     volumes:
       - ./public:/usr/local/apache2/htdocs
-    links:
-      - db:db
 
   ##############################
   # Setup the DataBase container
   ##############################
 
-  db:
-    image: mysql
+  mysql:
+    container_name: mysql_5-7-25
+    image: mysql:5.7.25
     volumes:
-      - ./docker/mysql:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
 
-  ##############################
+  ################################
   # Setup the phpmyadmin container
-  ##############################
+  ################################
+
   phpmyadmin:
+    container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
     environment:
      - PMA_ARBITRARY=1
     ports:
-      - 8081:80
-    links:
-      - db:db
+      - "8081:80"
 
+################
+# Setup volumes 
+################
+volumes:
+  mysql-data:

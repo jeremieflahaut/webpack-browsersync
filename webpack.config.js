@@ -1,24 +1,11 @@
+
+
 const path = require('path')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const dev = process.env.NODE_ENV === 'dev'
-
-let cssLoaders = [
-  { loader: 'css-loader', options: { importLoaders: 1, minimize: !dev } },
-  {
-    loader: 'postcss-loader',
-    options: {
-      plugins: (loader) => [
-        require('autoprefixer')({
-          browsers: ['last 2 versions', 'ie > 8']
-        })
-      ]
-    }
-  }
-]
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 let config = {
+  mode: 'development',
   entry: './src/js/index.js',
   output: {
     path: path.resolve('./public/assets'),
@@ -28,62 +15,46 @@ let config = {
   module: {
     rules: [
       {
-        enforce: 'pre',
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
+        use: 'babel-loader'
       },
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
+        test: /\.vue$/,
+        use: 'vue-loader'
+      },
+      {
+        test: /\.(js|vue)$/,
+        use: 'eslint-loader',
+        enforce: 'pre'
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: cssLoaders
-        })
+        use: [
+          'vue-style-loader',
+          'css-loader'
+        ]
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [...cssLoaders, 'sass-loader']
-        })
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'file-loader',
-        options: { name: '[name].[ext]' }
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader',
-        options: { name: '[name].[ext]' }
+        use: [
+          'style-loader', // creates style nodes from JS strings
+          'css-loader', // translates CSS into CommonJS
+          'sass-loader' // compiles Sass to CSS, using Node Sass by default
+        ]
       }
     ]
   },
-  devtool: dev ? 'cheap-module-eval-source-map' : false,
   plugins: [
+    new VueLoaderPlugin(),
     new BrowserSyncPlugin({
       // browse to http://localhost:3000/ during development,
       host: 'localhost',
       port: 3000,
       files: ['./public/*.html', './public/*.php'],
       proxy: 'http://localhost/',
-      notify: false
-    }),
-    new ExtractTextPlugin({
-      filename: 'styles.css'
+      notify: true
     })
   ]
-}
-
-if (!dev) {
-  config.plugins.push(new UglifyJSPlugin({
-    sourceMap: false
-  }))
 }
 
 module.exports = config
