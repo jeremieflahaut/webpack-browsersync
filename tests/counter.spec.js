@@ -1,12 +1,12 @@
 import { mount } from '@vue/test-utils'
-import HelloComponent from '../src/js/components/HelloComponent.vue'
+import CountComponent from '../src/js/components/CountComponent.vue'
 
 describe('Counter', () => {
   // Now mount the component and you have the wrapper
-  const wrapper = mount(HelloComponent)
+  const wrapper = mount(CountComponent)
 
   it('renders the correct markup', () => {
-    expect(wrapper.html()).toContain('<span class="count">0</span>')
+    expect(wrapper.html()).toContain('<span class="count">Count : 0</span>')
   })
 
   // it's also easy to check for the existence of elements
