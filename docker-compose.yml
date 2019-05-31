@@ -5,7 +5,7 @@ services:
   # Setup the Apache container
   ############################
   web:
-    container_name: apache_2-4-38
+    container_name: apache
     image: httpd:2.4.38
     ports:
       - "80:80"
@@ -19,7 +19,7 @@ services:
   #########################
 
   php:
-    container_name: php_7-3-2
+    container_name: php
     build: ./docker/php/
     volumes:
       - ./public:/usr/local/apache2/htdocs
@@ -29,10 +29,10 @@ services:
   ##############################
 
   mysql:
-    container_name: mysql_5-7-25
+    container_name: mysql
     image: mysql:5.7.25
     volumes:
-      - mysql-data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
 
@@ -43,6 +43,8 @@ services:
   phpmyadmin:
     container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
+    depends_on:
+     - mysql
     environment:
      - PMA_ARBITRARY=1
     ports:
@@ -52,4 +54,4 @@ services:
 # Setup volumes 
 ################
 volumes:
-  mysql-data:
+  mysql_data:
