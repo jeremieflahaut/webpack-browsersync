@@ -1,14 +1,13 @@
 import { shallowMount } from '@vue/test-utils'
 import AsyncComponent from '../src/js/components/AsyncComponent.vue'
 
-
 describe('Async', () => {
-    it('users is null on created', () => {
+    it('users is null when component is created', () => {
         const wrapper = shallowMount(AsyncComponent)
         expect(wrapper.vm.users).toBe(null)
     })
     
-    it('fetches async when a button is clicked', (done) => {
+    it('fetches async when a button is clicked', () => {
         const wrapper = shallowMount(AsyncComponent, {
             mocks : {
                 $http : {
@@ -28,8 +27,7 @@ describe('Async', () => {
     
         wrapper.find('button').trigger('click')
         wrapper.vm.$nextTick(() => {
-            expect(wrapper.vm.users).toHaveLength(1)
-            done()
-          })
-      })
+            expect(wrapper.html()).toMatchSnapshot()
+        })
+    })
 })

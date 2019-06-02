@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Async fetches async when a button is clicked 1`] = `
+"<div><button>
+    Users
+  </button> <ul><li>
+      Leanne Graham
+    </li></ul></div>"
+`;
