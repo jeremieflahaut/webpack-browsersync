@@ -4,6 +4,6 @@ exports[`Async fetches async when a button is clicked 1`] = `
 "<div><button>
     Users
   </button> <ul><li>
-      Leanne Graham
+      1
     </li></ul></div>"
 `;

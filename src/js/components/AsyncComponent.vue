@@ -5,7 +5,7 @@
     </button>
     <ul>
       <li v-for="user in users">
-        {{ user.name }}
+        {{ user.id }}
       </li>
     </ul>
   </div>

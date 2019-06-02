@@ -1,13 +1,22 @@
 <template>
-  <div class="full-width center-content">
-    <hello-component name="World" />
+  <div
+    class="full-width center-content"
+  >
+    <count-component />
+    <async-component />
+
   </div>
 </template>
 <script>
-import HelloComponent from './components/HelloComponent.vue'
+import CountComponent from './components/CountComponent.vue'
+import AsyncComponent from './components/AsyncComponent.vue'
+
 export default {
   components: {
-    HelloComponent
+    CountComponent,
+    AsyncComponent
   }
 }
 </script>
+<style>
+</style>
