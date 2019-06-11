@@ -4,17 +4,19 @@
   >
     <count-component />
     <async-component />
+    <scroll-component />
 
   </div>
 </template>
 <script>
 import CountComponent from './components/CountComponent.vue'
 import AsyncComponent from './components/AsyncComponent.vue'
-
+import ScrollComponent from './components/ScrollComponent.vue'
 export default {
   components: {
     CountComponent,
-    AsyncComponent
+    AsyncComponent,
+    ScrollComponent,
   }
 }
 </script>
