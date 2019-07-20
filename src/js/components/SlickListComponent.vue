@@ -1,11 +1,12 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <SlickList
       class="row"
       v-model="items"
       axis="xy"
       :transitionDuration="0"
       :useDragHandle="true"
+      appendTo=".container-fluid"
     >
         <SlickItem class="col-4" v-for="(item, index) in items" :index="index" :key="index">
             <div v-handle class="handle">Move</div>
