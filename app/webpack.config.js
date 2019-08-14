@@ -1,6 +1,5 @@
 const path = require('path')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 let config = {
   mode: 'development',
@@ -17,18 +16,13 @@ let config = {
         use: 'babel-loader'
       },
       {
-        test: /\.vue$/,
-        use: 'vue-loader'
-      },
-      {
-        test: /\.(js|vue)$/,
+        test: /\.(js)$/,
         use: 'eslint-loader',
         enforce: 'pre'
       },
       {
         test: /\.css$/,
         use: [
-          'vue-style-loader',
           'css-loader'
         ]
       },
@@ -43,13 +37,12 @@ let config = {
     ]
   },
   plugins: [
-    new VueLoaderPlugin(),
     new BrowserSyncPlugin({
       // browse to http://localhost:3000/ during development,
       host: 'localhost',
       port: 3000,
       files: ['./public/*.html', './public/*.php'],
-      proxy: 'http://localhost/',
+      proxy: 'apache_webpack',
       notify: true,
       open: false
     })

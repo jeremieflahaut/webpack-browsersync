@@ -5,53 +5,32 @@ services:
   # Setup the Apache container
   ############################
   web:
-    container_name: apache
+    container_name: apache_webpack
     image: httpd:2.4.38
     ports:
-      - "80:80"
+      - "8080:80"
     volumes:
-      - ./public:/usr/local/apache2/htdocs
-      - ./docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
-      - ./docker/apache/vhosts/:/usr/local/apache2/conf/vhosts
+      - ./app/public:/usr/local/apache2/htdocs
+      - ./.docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./.docker/apache/vhosts/:/usr/local/apache2/conf/vhosts
     
   #########################
   # Setup the PHP container
   #########################
-
   php:
-    container_name: php
-    build: ./docker/php/
+    container_name: php_webpack
+    build: ./.docker/php/
     volumes:
-      - ./public:/usr/local/apache2/htdocs
+      - ./app/public:/var/www/html
 
-  ##############################
-  # Setup the DataBase container
-  ##############################
-
-  mysql:
-    container_name: mysql
-    image: mysql:5.7.25
-    volumes:
-      - mysql_data:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-
-  ################################
-  # Setup the phpmyadmin container
-  ################################
-
-  phpmyadmin:
-    container_name: phpmyadmin
-    image: phpmyadmin/phpmyadmin
-    depends_on:
-     - mysql
-    environment:
-     - PMA_ARBITRARY=1
+  ############################
+  # Setup the Browsersync container
+  ############################
+  webpack:
+    container_name: webpack
+    build: ./.docker/node
     ports:
-      - "8081:80"
-
-################
-# Setup volumes 
-################
-volumes:
-  mysql_data:
+      - "3000:3000"
+      - "3001:3001"
+    volumes:
+      - ./app:/app
