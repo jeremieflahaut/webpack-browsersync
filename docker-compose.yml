@@ -24,13 +24,22 @@ services:
       - ./app/public:/var/www/html
 
   ############################
-  # Setup the Browsersync container
+  # Setup the webpack container
   ############################
   webpack:
     container_name: webpack
-    build: ./.docker/node
+    build: ./.docker/webpack
+    volumes:
+      - ./app:/app
+
+  ############################
+  # Setup the Browsersync container
+  ############################
+  browsersync:
+    container_name: browsersync
+    build: ./.docker/browsersync
     ports:
       - "3000:3000"
       - "3001:3001"
     volumes:
-      - ./app:/app
+      - ./app/public:/app

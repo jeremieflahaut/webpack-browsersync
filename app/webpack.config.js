@@ -1,5 +1,4 @@
 const path = require('path')
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 let config = {
   mode: 'development',
@@ -36,17 +35,7 @@ let config = {
       }
     ]
   },
-  plugins: [
-    new BrowserSyncPlugin({
-      // browse to http://localhost:3000/ during development,
-      host: 'localhost',
-      port: 3000,
-      files: ['./public/*.html', './public/*.php'],
-      proxy: 'apache_webpack',
-      notify: true,
-      open: false
-    })
-  ]
+  plugins: []
 }
 
 module.exports = config
